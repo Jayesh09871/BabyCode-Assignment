@@ -4,8 +4,6 @@ import MockAdapter from 'axios-mock-adapter';
 
 const mock = new MockAdapter(axios, { delayResponse: 700 });
 
-
-// Use localStorage for persistence
 function getLocalStudents() {
   const data = localStorage.getItem('students');
   if (data) return JSON.parse(data);
@@ -22,7 +20,7 @@ let students = getLocalStudents();
 
 
 mock.onGet('/api/students').reply(config => {
-  students = getLocalStudents(); // Always refresh from localStorage
+  students = getLocalStudents(); 
   const course = config.params?.course;
   let filtered = students;
   if (course) {
@@ -49,5 +47,3 @@ mock.onGet(/\/api\/students\/\d+/).reply(config => {
 });
 
 export default axios;
-
-// after adding new student sigin the student removed after refresh, store student in mongodb or local storage if you use mongo db then use :- mongodb+srv://jayeshkakhani29:POQzpGE8NdiPZonY@cluster0.jkrc3.mongodb.net/student-managementt

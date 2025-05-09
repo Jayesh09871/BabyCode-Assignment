@@ -11,13 +11,13 @@ export default function App() {
   const [user, setUser] = useState(auth.currentUser);
   const [refresh, setRefresh] = useState(0);
 
-  // Listen for auth changes
+
   React.useEffect(() => {
     const unsub = auth.onAuthStateChanged(u => setUser(u));
     return unsub;
   }, []);
 
-  // Available courses for filter (hardcoded for demo)
+
   const courses = ['Math', 'Science', 'History'];
 
   return (
